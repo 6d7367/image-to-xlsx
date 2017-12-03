@@ -18,6 +18,8 @@ if __name__ == '__main__':
 	workbook = xlsxwriter.Workbook(output_file)
 	worksheet = workbook.add_worksheet()
 
+	formats = {}
+
 	i = Image.open(input_file)
 	s = i.size
 	width = s[0]
@@ -46,12 +48,14 @@ if __name__ == '__main__':
 			current_column = 0
 			current_row += 1
 
-
-		print('x: {}, y: {}'.format(current_column, current_row))
-
 		color_hex = '#{:02X}{:02X}{:02X}'.format(*pxl)
-		frmt = workbook.add_format({'bg_color': color_hex, 'pattern': 1})
 
+		if color_hex not in formats.keys():
+			frmt = workbook.add_format({'bg_color': color_hex, 'pattern': 1})
+			formats[color_hex] = frmt
+		else:
+			frmt = formats[color_hex]
+		
 		worksheet.write_blank(current_row, current_column, None, frmt)
 
 		current_column += 1

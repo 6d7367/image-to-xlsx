@@ -1,6 +1,9 @@
 # image-to-xlsx
 ```
-./img2xlsx.py Lenna2.png Lenna2.xlsx
+pip3 install XlsxWriter
+pip3 install Pillow
+
+./img2xlsx.py example/Lenna2.png example/Lenna2.xlsx
 ```
 ![Lenna2.png](Lenna2.png)
 ```
